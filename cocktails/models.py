@@ -17,3 +17,11 @@ class Cocktail(models.Model):
 
     def __str__(self):
         return self.name
+
+class RecipeIngredient(models.Model):
+    cocktail = models.ForeignKey(Cocktail, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    quantity = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.quantity} {self.ingredient.name} w {self.cocktail.name}"
